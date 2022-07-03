@@ -11,7 +11,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-export const Sidebar = () => {
+const Sidebar = () => {
   return (
     <div className='sidebar'>
         <div className="top">
@@ -79,3 +79,5 @@ export const Sidebar = () => {
     </div>
   )
 }
+
+export default Sidebar

@@ -12,17 +12,33 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  Navigate,
 } from "react-router-dom";
 import { DarkModeContext } from "./context/darkModeContext";
+import { AuthContext } from "./context/AuthContext";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+
+  const ProtectedRoute = ({ children }) => {
+    const { user } = useContext(AuthContext);
+
+    if (!user) {
+      return <Navigate to="/login" />;
+    }
+
+    return children;
+  };
 
   return (
     <div className={darkMode ? "app dark" : "app"}>
        <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Home/>} />
+      <Route path="/"  element={
+        <ProtectedRoute>
+          <Home />
+        </ProtectedRoute>
+      }/>
       <Route path="login" element={<Login/>} />
       <Route path="users">
         <Route index element={<List/>} />
